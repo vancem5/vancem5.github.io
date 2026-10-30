@@ -5,8 +5,8 @@ Personal portfolio site: https://vancem5.github.io
 ## Built with
 - Semantic HTML
 - Bootstrap 5 with custom CSS overrides
-- Vanilla JavaScript for dark/light mode and nav scroll awareness
-- Prism.js for syntax highlighting
+- Vanilla JavaScript for dark/light mode and active-section navigation
+- Prism.js for code snippet syntax highlighting
 
 ## Structure
     TODO
