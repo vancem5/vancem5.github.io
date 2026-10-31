@@ -2,6 +2,29 @@
    Overrides layered on top of Bootstrap 5.3
    ========================================================== */
 
+/* ---------- Self-hosted fonts (variable, Latin subset, SIL OFL) ---------- */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../fonts/space-grotesk-latin-wght-normal.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root,
 [data-bs-theme="dark"] {
   --accent: #2dd4bf;
@@ -21,6 +44,7 @@
   --bs-secondary-color: var(--text-muted);
   --bs-border-color: var(--border);
   --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 [data-bs-theme="light"] {
@@ -44,6 +68,9 @@
 
 html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 body { background: var(--surface); color: var(--text); }
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.display-3 { font-family: var(--font-heading); }
 
 .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
 .accent { color: var(--accent); }
