@@ -13,6 +13,15 @@
  * 3. Maybe change some colors on bounce or return
  */
 
+// game colors, named by role so the whole palette can be changed in one place
+const PALETTE = {
+  background: '#0f1419',
+  racquetGuide: '#18212a',
+  racquet: '#2dd4bf',
+  ball: '#fbbf24',
+  text: '#e6edf3'
+};
+
 // racquet and ball starting params
 const MAX_LIVES = 5;
 let startX;
@@ -48,7 +57,7 @@ function setup() {
 }
 
 function draw() {
-  background('#3F4C4E');
+  background(PALETTE.background);
   game.play();
 }
 

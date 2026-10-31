@@ -23,7 +23,7 @@ class Ball {
      */
     show() {
       noStroke();
-      fill('#8B9B4B')
+      fill(PALETTE.ball)
       circle(this.ballX, this.ballY, this.ballDiam);
     }
   

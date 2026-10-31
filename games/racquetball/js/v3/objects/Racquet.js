@@ -24,11 +24,11 @@ class Racquet {
     show() {
       noStroke();
       // racquet guide
-      fill('#A19F9E');
+      fill(PALETTE.racquetGuide);
       rect((width - this.racWidth / 2), (height / 2), this.racWidth, height)
   
       // racquet
-      fill('#623543');
+      fill(PALETTE.racquet);
       rect((width - this.racWidth / 2), this.racY, this.racWidth, this.racHeight);
     }
   

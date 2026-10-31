@@ -45,7 +45,7 @@ class UserInterface {
     }
 
     showRules() {
-        fill('#F6F4F1');
+        fill(PALETTE.text);
         textSize(13);
         textStyle(NORMAL);
         textAlign(LEFT, TOP);
@@ -55,7 +55,7 @@ class UserInterface {
     }
 
     showControls() {
-        fill('#F6F4F1');
+        fill(PALETTE.text);
         textSize(13);
         textStyle(NORMAL);
         textAlign(LEFT, BOTTOM);
@@ -70,7 +70,7 @@ class UserInterface {
      * Displays player score
      */
     showScore() {
-        fill('#F6F4F1');
+        fill(PALETTE.text);
         textSize(13);
         textStyle(NORMAL);
         textAlign(LEFT, CENTER);
