@@ -1,0 +1,213 @@
+/* ==========================================================
+   Overrides layered on top of Bootstrap 5.3
+   ========================================================== */
+
+:root,
+[data-bs-theme="dark"] {
+  --accent: #2dd4bf;
+  --accent-hover: #5eead4;
+  --accent-ink: #042f2e;
+  --surface: #0f1419;
+  --surface-alt: #141b22;
+  --card-bg: #18212a;
+  --border: #253140;
+  --text: #e6edf3;
+  --text-muted: #9aa7b4;
+  --tag-bg: rgba(45, 212, 191, 0.1);
+  --contour: rgba(45, 212, 191, 0.07);
+
+  --bs-body-bg: var(--surface);
+  --bs-body-color: var(--text);
+  --bs-secondary-color: var(--text-muted);
+  --bs-border-color: var(--border);
+  --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+[data-bs-theme="light"] {
+  --accent: #0f766e;
+  --accent-hover: #115e59;
+  --accent-ink: #ffffff;
+  --surface: #fafaf9;
+  --surface-alt: #f0f2f1;
+  --card-bg: #ffffff;
+  --border: #dde3e1;
+  --text: #1c2526;
+  --text-muted: #5b6b6a;
+  --tag-bg: rgba(15, 118, 110, 0.08);
+  --contour: rgba(15, 118, 110, 0.08);
+
+  --bs-body-bg: var(--surface);
+  --bs-body-color: var(--text);
+  --bs-secondary-color: var(--text-muted);
+  --bs-border-color: var(--border);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+body { background: var(--surface); color: var(--text); }
+
+.mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+.accent { color: var(--accent); }
+
+a { color: var(--accent); }
+a:hover { color: var(--accent-hover); }
+
+.skip-link {
+  position: absolute; left: 1rem; top: 1rem; z-index: 2000;
+  background: var(--accent); color: var(--accent-ink); padding: .5rem 1rem; border-radius: .375rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn-accent {
+  --bs-btn-bg: var(--accent);
+  --bs-btn-border-color: var(--accent);
+  --bs-btn-color: var(--accent-ink);
+  --bs-btn-hover-bg: var(--accent-hover);
+  --bs-btn-hover-border-color: var(--accent-hover);
+  --bs-btn-hover-color: var(--accent-ink);
+  --bs-btn-active-bg: var(--accent-hover);
+  --bs-btn-active-color: var(--accent-ink);
+  font-weight: 600;
+}
+[data-bs-theme="light"] .btn-outline-light {
+  --bs-btn-color: var(--text);
+  --bs-btn-border-color: var(--border);
+  --bs-btn-hover-bg: var(--text);
+  --bs-btn-hover-color: var(--surface);
+}
+
+/* ---------- Nav ---------- */
+.site-nav {
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.site-nav .navbar-brand { font-weight: 600; color: var(--text); }
+.site-nav .nav-link { color: var(--text-muted); }
+.site-nav .nav-link:hover,
+.site-nav .nav-link.active { color: var(--accent); }
+.theme-toggle { min-width: 4rem; }
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  padding: 7rem 0 4rem;
+}
+/* Subtle contour-line motif. Add .contour to any section that should have it. */
+.hero,
+.contour {
+  position: relative;
+  overflow: hidden;
+}
+.hero::before,
+.contour::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    repeating-radial-gradient(ellipse at 85% 30%, transparent 0 38px, var(--contour) 39px 40px),
+    repeating-radial-gradient(ellipse at 15% 110%, transparent 0 46px, var(--contour) 47px 48px);
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, black 60%, transparent);
+}
+.hero .container,
+.contour .container { position: relative; }
+.eyebrow { color: var(--accent); margin-bottom: .5rem; }
+.hero-lead { max-width: 38rem; color: var(--text-muted); }
+.hero-links a { color: var(--text-muted); text-decoration: none; margin-right: 1rem; }
+.hero-links a:hover { color: var(--accent); }
+
+/* ---------- Sections ---------- */
+.section { padding: 5rem 0; }
+.section-alt { background: var(--surface-alt); }
+.section-title {
+  display: flex; align-items: center; gap: .75rem;
+  font-weight: 700; margin-bottom: 2.5rem;
+}
+.section-title .mono { font-size: 1rem; }
+
+/* ---------- Project cards ---------- */
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: .75rem;
+  overflow: hidden;
+  transition: transform .2s ease, border-color .2s ease;
+}
+.project-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+
+.project-thumb {
+  aspect-ratio: 16 / 7;
+  display: grid; place-items: center;
+  font-weight: 600; font-size: 1.25rem;
+  color: rgba(255, 255, 255, .9);
+}
+img.project-thumb { display: block; width: 100%; height: auto; object-fit: cover; }
+/* Softens a screenshot: a flat veil of the page color, plus a fade into the card along the bottom. */
+.thumb-frame { position: relative; }
+.thumb-frame::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, transparent 55%, var(--card-bg)),
+    color-mix(in srgb, var(--surface) 35%, transparent);
+}
+
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .75rem; }
+.tags li {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: .75rem;
+  padding: .2rem .55rem;
+  border-radius: 999px;
+  background: var(--tag-bg);
+  color: var(--accent);
+}
+
+.service-list { color: var(--text-muted); padding-left: 1.1rem; margin-bottom: 0; }
+
+/* ---------- Code snippets ---------- */
+.snippet summary {
+  cursor: pointer;
+  font-size: .875rem;
+  color: var(--accent);
+  user-select: none;
+}
+.snippet pre[class*="language-"] {
+  font-size: .8rem;
+  border-radius: .5rem;
+  margin: .75rem 0 0;
+  max-width: 100%;
+}
+
+/* ---------- Embedded games ---------- */
+.game-frame {
+  display: block;
+  max-width: 100%;
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+  background: #1b1b1b;
+}
+/* Bare pages that load inside .game-frame */
+.game-page { margin: 0; overflow: hidden; }
+
+/* ---------- Other work ---------- */
+.other-work li { padding: .5rem 0; border-top: 1px solid var(--border); }
+.other-work a { font-weight: 600; margin-right: .5rem; }
+
+.skill-head { color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; }
+
+.contact-lead { max-width: 34rem; color: var(--text-muted); }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+  color: var(--text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .project-card { transition: none; }
+  .project-card:hover { transform: none; }
+}

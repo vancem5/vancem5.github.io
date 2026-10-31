@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mike Vance | Software Engineer</title>
+  <meta name="description" content="Portfolio of Mike Vance, a computer science student at James Madison University building web, systems, and infrastructure projects.">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <!-- Prism (syntax highlighting) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <!-- Overrides -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="visually-hidden-focusable skip-link" href="#main">Skip to content</a>
+
+  <header>
+    <nav class="navbar navbar-expand-md fixed-top site-nav" aria-label="Main navigation">
+      <div class="container">
+        <a class="navbar-brand mono" href="#top">mv<span class="accent">.</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks"
+                aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navLinks">
+          <ul class="navbar-nav ms-auto align-items-md-center gap-md-2">
+            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item">
+              <button id="themeToggle" class="btn btn-sm btn-outline-secondary theme-toggle" type="button"
+                      aria-label="Switch to light mode">Light</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section id="top" class="hero">
+      <div class="container">
+        <p class="eyebrow mono">Hi, I'm</p>
+        <h1 class="display-3 fw-bold">Mike</h1>
+        <p class="lead hero-lead">
+          Computer science student at James Madison University. I build web apps, systems
+          software in C, and run some self-hosted infrastructure at home.
+        </p>
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <a class="btn btn-accent btn-lg" href="#projects">See my work</a>
+        </div>
+        <ul class="list-inline hero-links mt-4 mb-0">
+          <li class="list-inline-item"><a href="https://github.com/vancem5">GitHub</a></li>
+          <li class="list-inline-item"><a href="mailto:m.s.vance18@pm.me">Email</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title"><span class="mono accent">01.</span> Projects</h2>
+
+        <div class="row g-4">
+          <!-- Monstermon Bronze -->
+          <div class="col-lg-6">
+            <article class="card project-card h-100">
+              <div class="thumb-frame">
+                <img class="project-thumb" src="img/monstermon.png" width="800" height="350" loading="lazy"
+                     alt="Monstermon Bronze battle screen. The player's Ariados faces a bird-like monster in a forest, with the six-monster roster along the bottom and a stats panel and turn prompt at the lower right.">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="h5 card-title">Monstermon Bronze</h3>
+                <p class="card-text">
+                  A retro monster battler for the browser, built by a five-person team over
+                  eight weeks of Scrum sprints. I led UI development and built much of the interface.
+                </p>
+                <ul class="tags list-unstyled">
+                  <li>JavaScript</li><li>HTML Canvas</li><li>Scrum</li><li>Small Team</li>
+                </ul>
+                <details class="snippet">
+                  <summary>View code</summary>
+                  <p class="small text-body-secondary mt-2 mb-0">
+                    The roster panel from the battle screen. Team code, mostly mine.
+                  </p>
+                  <pre><code class="language-js">/**
+ * Displays the user's roster on the battle screen.
+ */
+#showRoster() {
+  // Display for roster panel
+  rectMode(CENTER);
+  fill('#8A946F');
+  stroke('black');
+  strokeWeight(2);
+  let rosterSpace = 32;
+  for (let x = 0; x &lt; 6; x++) {
+    rect(rosterSpace, height - 32, 60, 60);
+    rosterSpace += 60;
+  }
+
+  // display roster sprites
+  let spacing = 60;
+  let x = 32;
+  let y = 568;
+  for (let j = 0; j &lt; playerRoster.maxSize; j++) {
+    image(playerRoster.next().sprite_front, x, y);
+    x += spacing;
+  }
+
+  // selection square is yellow until a selection is made
+  let r, g, b;
+  if (batEng.turn &amp;&amp; batEng.switchAllowed) {
+
+    // If the current roster rotation is on the Player's current monster
+    // make the selection box green
+    if (playerRoster.peek() == batEng.currentMonsterPlayer) {
+      r = 0;
+      g = 255;
+      b = 0;
+    }
+
+    // Otherwise, make selection box yellow
+    else {
+      r = 255;
+      g = 251;
+      b = 0;
+    }
+
+    if (playerRoster.peek().current_hp == 0) { // Selecton box is red if monster is unavailable
+      r = 255;
+      g = 0;
+      b = 0;
+    }
+  }
+  fill(r, g, b, 80)
+  rect(32, height - 32, 60, 60);
+}</code></pre>
+                </details>
+                <p class="small text-body-secondary pt-3 mb-0">Course project (CS 345).</p>
+                <div class="mt-auto pt-3 d-flex gap-2">
+                  <a class="btn btn-sm btn-accent" href="games/monstermon/">Play it</a>
+                  <a class="btn btn-sm btn-outline-secondary" href="https://github.com/vancem5/MonstermonBronze">Source</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Unix shell -->
+          <div class="col-lg-6">
+            <article class="card project-card h-100">
+              <div class="thumb-frame">
+                <img class="project-thumb" src="img/shell.png" width="800" height="350" loading="lazy"
+                     alt="Terminal session in the shell. It exports a variable and echoes it, runs a three-stage pipeline of its own ls, head, and tee, merges an error message from stderr into a pipe, and runs a background job.">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="h5 card-title">Unix Shell</h3>
+                <p class="card-text">
+                  A Bash-like shell in C with a finite-state-machine command parser, chained pipes,
+                  file and stderr redirection, built-in commands, environment variables, and
+                  background execution.
+                </p>
+                <ul class="tags list-unstyled">
+                  <li>C</li><li>fork / exec</li><li>dup2</li><li>Systems</li>
+                </ul>
+                <details class="snippet">
+                  <summary>View code</summary>
+                  <pre><code class="language-c">if (pid == 0)
+  {
+    // If not first command we read from previous pipe
+    if (i &gt; 0)
+      {
+        if (dup2 (pipes[i - 1][0], STDIN_FILENO) &lt; 0)
+          {
+            perror ("dup2 stdin");
+            _exit (1);
+          }
+      }
+    // If not last command we give output to next pipe
+    if (i &lt; n - 1)
+      {
+        // Gives stdout to next pipe
+        if (dup2 (pipes[i][1], STDOUT_FILENO) &lt; 0)
+          {
+            perror ("dup2 stdout");
+            _exit (1);
+          }
+      }
+
+    // Cloase all file descriptores in childs
+
+    for (int k = 0; k &lt; n - 1; k++)
+      {
+        // Closes descriptor 0 and 1 for all pipes
+        close (pipes[k][0]);
+        close (pipes[k][1]);
+      }
+
+    // Execute this stage
+    run_in_child (&amp;p-&gt;cmds[i]);
+
+    // Exit in case something doesn't work, THIS SHOULD NEVER BE CALLED
+    // If it has been we got a problem
+    perror ("Lets never see this");
+    _exit (1);
+  }</code></pre>
+                </details>
+                <p class="small text-body-secondary mt-auto pt-3 mb-0">Course project (CS 361). Source available on request.</p>
+              </div>
+            </article>
+          </div>
+
+          <!-- DNS -->
+          <div class="col-lg-6">
+            <article class="card project-card h-100">
+              <div class="thumb-frame">
+                <img class="project-thumb" src="img/dns.png" width="800" height="350" loading="lazy"
+                     alt="Terminal output from the DNS client for a CNAME query on www.jmu.edu. The client decodes a recorded response into dig-style sections, showing the header and flags, the question, a CNAME answer pointing to it-www1.jmu.edu, and an additional A record with its address.">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="h5 card-title">DNS Client and Server</h3>
+                <p class="card-text">
+                  A DNS client in C that follows RFC 1035. Messages are encoded and parsed by hand,
+                  including name compression, for A, AAAA, MX, NS, CNAME, and SOA records. The
+                  server side answers lookups from a local binary record database.
+                </p>
+                <ul class="tags list-unstyled">
+                  <li>C</li><li>Sockets</li><li>Binary protocols</li><li>RFC 1035</li>
+                </ul>
+                <details class="snippet">
+                  <summary>View code</summary>
+                  <pre><code class="language-c">int
+decode_name (const uint8_t *buf, int offset, char *out)
+{
+  int out_pos = 0;
+  int return_offset = -1; // set the first time we follow a compression pointer
+  int jumps = 0;
+
+  while (1)
+    {
+      uint8_t len = buf[offset];
+
+      if (len == 0)
+        {
+          // if we never jumped, resume just past this null byte
+          if (return_offset == -1)
+            return_offset = offset + 1;
+          break;
+        }
+
+      if ((len &amp; 0xC0) == 0xC0)
+        {
+          // Compression pointer: top 2 bits are set.
+          // The offset to jump to is the lower 6 bits of this byte
+          // combined with all 8 bits of the next byte.
+          if (return_offset == -1)
+            return_offset = offset + 2; // caller resumes past these 2 bytes
+          offset = ntohs (*(uint16_t *)&amp;buf[offset]) &amp; 0x3FFF;
+          if (++jumps &gt; 10)
+            break; // guard against malformed looping pointers
+          continue;
+        }
+
+      // Regular label: len bytes of name text follow
+      offset++;
+      if (out_pos &gt; 0)
+        out[out_pos++] = '.';
+      memcpy (out + out_pos, buf + offset, len);
+      out_pos += len;
+      offset += len;
+    }
+
+  // append a trailing dot to decoded names
+  out[out_pos++] = '.';
+  out[out_pos] = '\0';
+
+  return return_offset;
+}</code></pre>
+                </details>
+                <p class="small text-body-secondary mt-auto pt-3 mb-0">Course project (CS 361). Source available on request.</p>
+              </div>
+            </article>
+          </div>
+
+          <!-- Homelab -->
+          <div class="col-lg-6">
+            <article class="card project-card h-100">
+              <div class="thumb-frame">
+                <img class="project-thumb" src="img/homelab.png" width="800" height="350" loading="lazy"
+                     alt="Unraid dashboard for the homelab server. It shows a Docker containers panel with nine started services, including Audiobookshelf, Homarr, Immich, Jellyfin, Joplin Server, and RustDesk, plus panels for shares, users, Tailscale, processor, and memory.">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="h5 card-title">Homelab</h3>
+                <p class="card-text">
+                  A self-hosted Unraid server running containerized media, photo, and notes services,
+                  with Tailscale for secure remote access across family devices. Nginx Proxy Manager is
+                  set up and available for reverse proxying.
+                </p>
+                <ul class="tags list-unstyled">
+                  <li>Unraid</li><li>Docker</li><li>Nginx Proxy Manager</li><li>Tailscale</li>
+                </ul>
+                <ul class="small service-list">
+                  <li>Jellyfin and Audiobookshelf for media</li>
+                  <li>Immich for photo backup</li>
+                  <li>Joplin Server for notes</li>
+                  <li>Self-hosted RustDesk for remote support</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Smaller projects -->
+        <h3 class="h5 mt-5 mb-3 text-body-secondary">Other work</h3>
+        <ul class="list-unstyled other-work">
+          <li>
+            <a href="games/racquetball/">Racquetball</a>
+            <span class="text-body-secondary">JavaScript game created for a CS 345 lab, refactored into an object-oriented design, then extended beyond the original spec. Play v2 and v3 side by side.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title"><span class="mono accent">02.</span> About</h2>
+        <div class="row">
+          <div class="col-lg-8">
+            <p>
+              Before starting my academic journey, I spent about eight years as an intelligence analyst, first in
+              the U.S. Army and then as a contractor supporting the National Ground Intelligence Center. That work
+              taught me how to think analytically, to be a team player, and how to present my findings clearly
+              and concisely to decision makers.
+            </p>
+            <p>
+              I'm now finishing a B.S. in Computer Science with a minor in Geology at James Madison
+              University, graduating December 2026. I like a good challenge, whether it's defining a
+              stratigraphic section or solving a navigation problem using probabilistic planning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="section-title"><span class="mono accent">03.</span> Skills</h2>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <h3 class="h6 skill-head">Languages</h3>
+            <ul class="tags list-unstyled"><li>JavaScript</li><li>C</li><li>Python</li><li>Ruby</li><li>Haskell</li></ul>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h3 class="h6 skill-head">Web</h3>
+            <ul class="tags list-unstyled"><li>HTML</li><li>CSS</li><li>Bootstrap</li><li>Tailwind</li></ul>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h3 class="h6 skill-head">Systems</h3>
+            <ul class="tags list-unstyled"><li>Linux</li><li>Sockets</li><li>POSIX threads</li><li>Docker</li></ul>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h3 class="h6 skill-head">Tools</h3>
+            <ul class="tags list-unstyled"><li>Git</li><li>VS Code</li><li>Podman</li><li>Tailscale</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section section-alt">
+      <div class="container text-center">
+        <h2 class="section-title justify-content-center"><span class="mono accent">04.</span> Contact</h2>
+        <p class="lead mx-auto contact-lead">
+          I'm looking for software engineering roles starting in early 2027. Shoot me an email if you'd like to chat.
+        </p>
+        <a class="btn btn-accent btn-lg mt-2" href="mailto:m.s.vance18@pm.me">Say hello</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container d-flex flex-column flex-sm-row justify-content-between gap-2">
+      <small>&copy; <span id="year"></span> Mike Vance</small>
+      <small>Built with HTML, Bootstrap, and JavaScript.</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
