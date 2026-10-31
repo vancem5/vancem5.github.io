@@ -69,7 +69,7 @@ function keyPressed() {
     game.pause();
   } else if(keyCode == 27 && game.isPaused() == true) {
     game.unpause();
-  } else if(key == "`") {
+  } else if(key == "`" || key == "~") {
     game.fullReset();
     console.log("Game reset.")
   }
