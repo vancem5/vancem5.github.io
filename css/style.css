@@ -11,9 +11,23 @@
   font-display: swap;
 }
 @font-face {
-  font-family: "Inter";
-  src: url("../fonts/inter-latin-wght-normal.woff2") format("woff2");
-  font-weight: 100 900;
+  font-family: "Source Sans Pro";
+  src: url("../fonts/source-sans-pro-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../fonts/source-sans-pro-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../fonts/source-sans-pro-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -43,7 +57,8 @@
   --bs-body-color: var(--text);
   --bs-secondary-color: var(--text-muted);
   --bs-border-color: var(--border);
-  --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bs-body-font-family: "Source Sans Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bs-body-font-size: 1.125rem;
   --font-heading: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
@@ -140,7 +155,7 @@ a:hover { color: var(--accent-hover); }
 .hero .container,
 .contour .container { position: relative; }
 .eyebrow { color: var(--accent); margin-bottom: .5rem; }
-.hero-lead { max-width: 38rem; color: var(--text-muted); }
+.hero-lead { max-width: 38rem; color: var(--text-muted); font-size: 1.25em; }
 .hero-links a { color: var(--text-muted); text-decoration: none; margin-right: 1rem; }
 .hero-links a:hover { color: var(--accent); }
 
@@ -226,7 +241,7 @@ img.project-thumb { display: block; width: 100%; height: auto; object-fit: cover
 
 .skill-head { color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; }
 
-.contact-lead { max-width: 34rem; color: var(--text-muted); }
+.contact-lead { max-width: 34rem; color: var(--text-muted); font-size: 1.25em; }
 
 /* ---------- Footer ---------- */
 .site-footer {
