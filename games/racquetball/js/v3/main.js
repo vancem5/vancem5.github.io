@@ -19,7 +19,8 @@ const PALETTE = {
   racquetGuide: '#18212a',
   racquet: '#2dd4bf',
   ball: '#fbbf24',
-  text: '#e6edf3'
+  text: '#e6edf3',
+  dim: 'rgba(15, 20, 25, 0.6)' // darkens the game behind the pause and game over panel
 };
 
 // racquet and ball starting params

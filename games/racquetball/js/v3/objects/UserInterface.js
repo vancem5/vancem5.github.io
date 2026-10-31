@@ -78,6 +78,10 @@ class UserInterface {
     }
 
     showFrame() {
+        // dim the whole game behind the panel
+        fill(PALETTE.dim);
+        rect(this.frameCenterX, this.frameCenterY, width, height);
+
         fill(55, 100);
         rect(this.frameCenterX, this.frameCenterY, this.frameWidth, this.frameHeight);
     }
