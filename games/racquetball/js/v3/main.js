@@ -20,7 +20,10 @@ const PALETTE = {
   racquet: '#2dd4bf',
   ball: '#fbbf24',
   text: '#e6edf3',
-  dim: 'rgba(15, 20, 25, 0.6)' // darkens the game behind the pause and game over panel
+  accent: '#2dd4bf', // titles on the pause and game over panel
+  dim: 'rgba(15, 20, 25, 0.6)', // darkens the game behind the pause and game over panel
+  frame: 'rgba(24, 33, 42, 0.9)', // the pause and game over panel itself
+  border: '#253140'
 };
 
 // racquet and ball starting params

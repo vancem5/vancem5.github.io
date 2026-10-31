@@ -18,7 +18,9 @@ class UserInterface {
         textSize(25);
         textStyle(BOLD);
         textAlign(CENTER, CENTER);
+        fill(PALETTE.accent);
         text("Game Paused", this.frameCenterX, this.frameCenterY);
+        fill(PALETTE.text);
         textSize(13);
         textStyle(NORMAL);
         text("Current Score: " + game.getScore() + " | High Score: " + game.getHighScore() + " | Lives: " + game.lives, this.frameCenterX, (this.frameCenterY + 36));
@@ -36,7 +38,9 @@ class UserInterface {
         textSize(25);
         textStyle(BOLD);
         textAlign(CENTER, CENTER);
+        fill(PALETTE.accent);
         text("GAME OVER", this.frameCenterX, this.frameCenterY);
+        fill(PALETTE.text);
         textSize(13);
         textStyle(NORMAL);
         text("Press escape to reset", this.frameCenterX, (this.frameCenterY + 36));
@@ -82,8 +86,11 @@ class UserInterface {
         fill(PALETTE.dim);
         rect(this.frameCenterX, this.frameCenterY, width, height);
 
-        fill(55, 100);
-        rect(this.frameCenterX, this.frameCenterY, this.frameWidth, this.frameHeight);
+        // the panel, with a border and rounded corners
+        fill(PALETTE.frame);
+        stroke(PALETTE.border);
+        rect(this.frameCenterX, this.frameCenterY, this.frameWidth, this.frameHeight, 8);
+        noStroke(); // so the text drawn after the panel doesn't get an outline
     }
     
 }
