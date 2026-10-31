@@ -184,7 +184,9 @@ img.project-thumb { display: block; width: 100%; height: auto; object-fit: cover
 .game-frame {
   display: block;
   max-width: 100%;
-  border: 1px solid var(--border);
+  /* A shadow draws the outline, so the width and height attributes are the real content size. */
+  border: 0;
+  box-shadow: 0 0 0 1px var(--border);
   border-radius: .5rem;
   background: #1b1b1b;
 }
