@@ -22,7 +22,7 @@ class Ball {
      * Displays the ball.
      */
     show() {
-      stroke(0);
+      noStroke();
       fill('#8B9B4B')
       circle(this.ballX, this.ballY, this.ballDiam);
     }

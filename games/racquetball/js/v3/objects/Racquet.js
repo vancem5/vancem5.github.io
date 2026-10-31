@@ -28,7 +28,6 @@ class Racquet {
       rect((width - this.racWidth / 2), (height / 2), this.racWidth, height)
   
       // racquet
-      stroke(0);
       fill('#623543');
       rect((width - this.racWidth / 2), this.racY, this.racWidth, this.racHeight);
     }
