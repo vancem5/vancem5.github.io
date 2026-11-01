@@ -3,29 +3,60 @@
 (() => {
   const root = document.documentElement;
   const toggle = document.getElementById("themeToggle");
-  const KEY = "theme";
+  const THEME_KEY = "theme";
 
-  const getStored = () => {
-    try { return localStorage.getItem(KEY); } catch { return null; }
-  };
-  const store = (value) => {
-    try { localStorage.setItem(KEY, value); } catch { /* storage unavailable */ }
-  };
+  // Reading and writing saved settings can fail (for example in a private window),
+  // so both are wrapped in try/catch and the site works without them.
+  function getSavedTheme() {
+    try {
+      return localStorage.getItem(THEME_KEY);
+    } catch (error) {
+      return null;
+    }
+  }
 
-  const applyTheme = (theme) => {
+  function saveTheme(theme) {
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch (error) {
+      // The choice just won't be remembered.
+    }
+  }
+
+  // Applies a theme to the page. The button offers the opposite theme.
+  function showTheme(theme) {
     root.setAttribute("data-bs-theme", theme);
-    const next = theme === "dark" ? "light" : "dark";
-    toggle.textContent = next[0].toUpperCase() + next.slice(1);
-    toggle.setAttribute("aria-label", `Switch to ${next} mode`);
-  };
 
-  const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-  applyTheme(getStored() ?? (prefersLight ? "light" : "dark"));
+    if (theme === "dark") {
+      toggle.textContent = "Light";
+      toggle.setAttribute("aria-label", "Switch to light mode");
+    } else {
+      toggle.textContent = "Dark";
+      toggle.setAttribute("aria-label", "Switch to dark mode");
+    }
+  }
+
+  // Start with the saved theme. If there isn't one, follow the visitor's system setting.
+  let startingTheme = getSavedTheme();
+  if (startingTheme === null) {
+    if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+      startingTheme = "light";
+    } else {
+      startingTheme = "dark";
+    }
+  }
+  showTheme(startingTheme);
 
   toggle.addEventListener("click", () => {
-    const next = root.getAttribute("data-bs-theme") === "dark" ? "light" : "dark";
-    applyTheme(next);
-    store(next);
+    let nextTheme;
+    if (root.getAttribute("data-bs-theme") === "dark") {
+      nextTheme = "light";
+    } else {
+      nextTheme = "dark";
+    }
+
+    showTheme(nextTheme);
+    saveTheme(nextTheme);
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
