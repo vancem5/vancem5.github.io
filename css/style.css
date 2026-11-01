@@ -119,7 +119,10 @@ a:hover { color: var(--accent-hover); }
 
 /* ---------- Nav ---------- */
 .site-nav {
+  /* color-mix blends two colors. This is the page color at 85% and the rest transparent,
+     so the page shows faintly through the nav and it follows the light and dark themes. */
   background: color-mix(in srgb, var(--surface) 85%, transparent);
+  /* blurs whatever scrolls underneath the nav */
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
@@ -144,11 +147,18 @@ a:hover { color: var(--accent-hover); }
 .hero::before,
 .contour::before {
   content: "";
+  /* inset: 0 is shorthand for top, right, bottom, and left all set to 0, so this fills the section */
   position: absolute; inset: 0;
+  /* Two sets of thin rings, like the contour lines on a topographic map. "at 85% 30%" is
+     where the rings are centered. Each set is empty space for most of its width and then a
+     1px line, repeated outward. One set repeats every 40px and the other every 48px, so
+     they drift in and out of step and look like uneven terrain. */
   background:
     repeating-radial-gradient(ellipse at 85% 30%, transparent 0 38px, var(--contour) 39px 40px),
     repeating-radial-gradient(ellipse at 15% 110%, transparent 0 46px, var(--contour) 47px 48px);
+  /* clicks pass through the lines to the content underneath */
   pointer-events: none;
+  /* fades the lines out toward the bottom: solid for the top 60%, then transparent */
   mask-image: linear-gradient(to bottom, black 60%, transparent);
 }
 .hero .container,
@@ -177,19 +187,23 @@ a:hover { color: var(--accent-hover); }
 }
 .project-card:hover { transform: translateY(-3px); border-color: var(--accent); }
 
+/* Screenshots at the top of each project card. They're 16:7, and cover fills the box if one isn't. */
 .project-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
   aspect-ratio: 16 / 7;
-  display: grid; place-items: center;
-  font-weight: 600; font-size: 1.25rem;
-  color: rgba(255, 255, 255, .9);
+  object-fit: cover;
 }
-img.project-thumb { display: block; width: 100%; height: auto; object-fit: cover; }
 /* Softens a screenshot: a flat veil of the page color, plus a fade into the card along the bottom. */
 .thumb-frame { position: relative; }
 .thumb-frame::after {
   content: "";
   position: absolute; inset: 0;
   pointer-events: none;
+  /* Two layers, and the first one listed is on top. The top layer fades from clear into
+     the card color along the bottom of the image. The layer under it is a flat veil of
+     the page color at 35%, which softens the screenshot's colors and contrast. */
   background:
     linear-gradient(to bottom, transparent 55%, var(--card-bg)),
     color-mix(in srgb, var(--surface) 35%, transparent);
