@@ -125,8 +125,7 @@ a:hover { color: var(--accent-hover); }
 }
 .site-nav .navbar-brand { font-weight: 600; color: var(--text); }
 .site-nav .nav-link { color: var(--text-muted); }
-.site-nav .nav-link:hover,
-.site-nav .nav-link.active { color: var(--accent); }
+.site-nav .nav-link:hover { color: var(--accent); }
 .theme-toggle { min-width: 4rem; }
 
 /* ---------- Hero ---------- */

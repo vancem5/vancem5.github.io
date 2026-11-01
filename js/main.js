@@ -1,4 +1,4 @@
-// Theme toggle, footer year, active nav highlighting, and closing the mobile menu.
+// Theme toggle, footer year, and closing the mobile menu.
 
 // ---------- Theme toggle ----------
 
@@ -65,61 +65,10 @@ toggle.addEventListener("click", () => {
 const currentYear = new Date().getFullYear();
 document.getElementById("year").textContent = currentYear;
 
-// ---------- Active nav link ----------
-
-// Highlight the nav link for the section currently in view.
-const links = document.querySelectorAll(".site-nav .nav-link");
-
-// Each nav link points at a section, so collect the sections the links point to.
-const sections = [];
-links.forEach((link) => {
-  const section = document.querySelector(link.getAttribute("href"));
-  if (section !== null) {
-    sections.push(section);
-  }
-});
-
-// Marks the link for the given section as active and clears the others.
-function highlightLink(sectionId) {
-  links.forEach((link) => {
-    if (link.getAttribute("href") === "#" + sectionId) {
-      link.classList.add("active");
-    } else {
-      link.classList.remove("active");
-    }
-  });
-}
-
-// The observer reports when a section enters or leaves the area it watches.
-// The negative margins shrink that area to a thin strip near the middle of the
-// screen, so a section counts as current when it crosses that strip.
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      highlightLink(entry.target.id);
-    }
-  });
-}, { rootMargin: "-45% 0px -50% 0px" });
-
-sections.forEach((section) => {
-  observer.observe(section);
-});
-
-// The Contact section is too short to reach the strip the observer watches, because
-// the page can't scroll any further. So at the very bottom of the page, highlight it.
-window.addEventListener("scroll", () => {
-  const bottomOfWindow = window.scrollY + window.innerHeight;
-  const bottomOfPage = document.documentElement.scrollHeight;
-
-  // A couple of pixels of slack, because scroll positions can have fractions.
-  if (bottomOfWindow >= bottomOfPage - 2) {
-    highlightLink("contact");
-  }
-});
-
 // ---------- Mobile menu ----------
 
 // Close the mobile menu after picking a link.
+const links = document.querySelectorAll(".site-nav .nav-link");
 const menu = document.getElementById("navLinks");
 
 links.forEach((link) => {
