@@ -105,6 +105,18 @@ sections.forEach((section) => {
   observer.observe(section);
 });
 
+// The Contact section is too short to reach the strip the observer watches, because
+// the page can't scroll any further. So at the very bottom of the page, highlight it.
+window.addEventListener("scroll", () => {
+  const bottomOfWindow = window.scrollY + window.innerHeight;
+  const bottomOfPage = document.documentElement.scrollHeight;
+
+  // A couple of pixels of slack, because scroll positions can have fractions.
+  if (bottomOfWindow >= bottomOfPage - 2) {
+    highlightLink("contact");
+  }
+});
+
 // ---------- Mobile menu ----------
 
 // Close the mobile menu after picking a link.
