@@ -232,6 +232,8 @@ img.project-thumb { display: block; width: 100%; height: auto; object-fit: cover
   border-radius: .5rem;
   background: #1b1b1b;
 }
+/* A scaled game keeps its real size and shrinks with a transform (see js/games.js). */
+.game-scale .game-frame { max-width: none; transform-origin: top left; }
 /* Bare pages that load inside .game-frame */
 .game-page { margin: 0; overflow: hidden; }
 

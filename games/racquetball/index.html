@@ -48,13 +48,17 @@
         <div class="d-flex flex-wrap justify-content-center gap-4 mt-4">
           <figure class="mb-0">
             <figcaption class="mono small text-body-secondary mb-2">v2 · single file</figcaption>
-            <iframe class="game-frame" src="v2.html" title="Racquetball version 2"
-                    width="600" height="400"></iframe>
+            <div class="game-scale" data-width="600" data-height="400">
+              <iframe class="game-frame" src="v2.html" title="Racquetball version 2"
+                      width="600" height="400"></iframe>
+            </div>
           </figure>
           <figure class="mb-0">
             <figcaption class="mono small text-body-secondary mb-2">v3 · object-oriented</figcaption>
-            <iframe class="game-frame" src="v3.html" title="Racquetball version 3"
-                    width="800" height="600"></iframe>
+            <div class="game-scale" data-width="800" data-height="600">
+              <iframe class="game-frame" src="v3.html" title="Racquetball version 3"
+                      width="800" height="600"></iframe>
+            </div>
           </figure>
         </div>
       </div>
@@ -228,5 +232,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="../../js/main.js"></script>
+  <script src="../../js/games.js"></script>
 </body>
 </html>
