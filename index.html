@@ -51,7 +51,7 @@
         <h1 class="display-3 fw-bold">Mike</h1>
         <p class="hero-lead">
           Computer science student at James Madison University. I build web apps, systems
-          software in C, and run some self-hosted infrastructure at home.
+          software in C, and self-host infrastructure at home.
         </p>
         <div class="d-flex flex-wrap gap-2 mt-4">
           <a class="btn btn-accent btn-lg" href="#projects">See my work</a>
@@ -226,9 +226,10 @@
               <div class="card-body d-flex flex-column">
                 <h3 class="h5 card-title">DNS Client and Server</h3>
                 <p class="card-text">
-                  A DNS client in C that follows RFC 1035. Messages are encoded and parsed by hand,
-                  including name compression, for A, AAAA, MX, NS, CNAME, and SOA records. The
-                  server side answers lookups from a local binary record database.
+                  A DNS client in C that follows RFC 1035. It builds and decodes the binary messages
+                  itself, with no DNS library, including name compression. It handles A, AAAA, MX,
+                  NS, CNAME, and SOA records. The server side answers lookups from a local binary
+                  record database.
                 </p>
                 <ul class="tags list-unstyled">
                   <li>C</li><li>Sockets</li><li>Binary protocols</li><li>RFC 1035</li>
@@ -356,7 +357,7 @@ decode_name (const uint8_t *buf, int offset, char *out)
         <div class="row g-4">
           <div class="col-md-6 col-lg-3">
             <h3 class="h6 skill-head">Languages</h3>
-            <ul class="tags list-unstyled"><li>JavaScript</li><li>C</li><li>Python</li><li>Ruby</li><li>Haskell</li></ul>
+            <ul class="tags list-unstyled"><li>JavaScript</li><li>C</li><li>Python</li><li>Java</li><li>Bash</li><li>R</li><li>Ruby</li><li>Rust</li><li>Haskell</li></ul>
           </div>
           <div class="col-md-6 col-lg-3">
             <h3 class="h6 skill-head">Web</h3>
@@ -367,8 +368,8 @@ decode_name (const uint8_t *buf, int offset, char *out)
             <ul class="tags list-unstyled"><li>Linux</li><li>Sockets</li><li>POSIX threads</li><li>Docker</li></ul>
           </div>
           <div class="col-md-6 col-lg-3">
-            <h3 class="h6 skill-head">Tools</h3>
-            <ul class="tags list-unstyled"><li>Git</li><li>VS Code</li><li>Podman</li><li>Tailscale</li></ul>
+            <h3 class="h6 skill-head">Tools and practices</h3>
+            <ul class="tags list-unstyled"><li>Git</li><li>Podman</li><li>Tailscale</li><li>ROS</li><li>Scrum</li><li>Code review</li></ul>
           </div>
         </div>
       </div>
